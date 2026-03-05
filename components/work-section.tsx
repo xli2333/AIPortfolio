@@ -145,7 +145,7 @@ export function WorkSection() {
         className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[180px] md:auto-rows-[200px]"
       >
         {experiments.map((experiment, index) => (
-          <WorkCard key={index} experiment={experiment} index={index} persistHover={index === 0} />
+          <WorkCard key={index} experiment={experiment} index={index} />
         ))}
       </div>
     </section>
@@ -155,7 +155,6 @@ export function WorkSection() {
 function WorkCard({
   experiment,
   index,
-  persistHover = false,
 }: {
   experiment: {
     title: string
@@ -165,33 +164,14 @@ function WorkCard({
     link?: string
   }
   index: number
-  persistHover?: boolean
 }) {
   const [isHovered, setIsHovered] = useState(false)
-  const cardRef = useRef<HTMLElement>(null)
-  const [isScrollActive, setIsScrollActive] = useState(false)
-
-  useEffect(() => {
-    if (!persistHover || !cardRef.current) return
-
-    const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: cardRef.current,
-        start: "top 80%",
-        onEnter: () => setIsScrollActive(true),
-      })
-    }, cardRef)
-
-    return () => ctx.revert()
-  }, [persistHover])
-
-  const isActive = isHovered || isScrollActive
+  const isActive = isHovered
 
   return (
     <article
-      ref={cardRef}
       className={cn(
-        "group relative border border-border/40 p-5 flex flex-col justify-between transition-all duration-500 cursor-pointer overflow-hidden",
+        "group relative border border-border/40 dark:border-white/20 p-5 flex flex-col justify-between transition-all duration-500 cursor-pointer overflow-hidden",
         experiment.span,
         isActive && "border-accent/60",
       )}
