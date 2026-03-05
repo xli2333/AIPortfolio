@@ -1,15 +1,18 @@
-import type React from "react"
+﻿import type React from "react"
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
 import { SmoothScroll } from "@/components/smooth-scroll"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { LanguageProvider } from "@/components/language-provider"
+import { LanguageToggle } from "@/components/language-toggle"
+import { EnglishTextGuard } from "@/components/english-text-guard"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "全栈工作流与工程化实践作品集",
+  title: "AI Workflow Portfolio",
   description:
-    "涵盖多 Agent 协同、工作流编排、AI 资产重建与底层协议治理的系统工程实践方案。",
+    "System-level portfolio covering multi-agent orchestration, workflow engineering, AI asset rebuilding, and protocol governance.",
   generator: "v0.app",
   icons: {
     icon: [
@@ -45,10 +48,14 @@ export default function RootLayout({
           disableTransitionOnChange
           storageKey="portfolio-theme"
         >
-          <div className="noise-overlay" aria-hidden="true" />
-          <ThemeToggle />
-          <SmoothScroll>{children}</SmoothScroll>
-          <Analytics />
+          <LanguageProvider>
+            <div className="noise-overlay" aria-hidden="true" />
+            <ThemeToggle />
+            <LanguageToggle />
+            <EnglishTextGuard />
+            <SmoothScroll>{children}</SmoothScroll>
+            <Analytics />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

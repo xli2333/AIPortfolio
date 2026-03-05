@@ -2,65 +2,88 @@
 
 import { useState, useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/components/language-provider"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import Link from "next/link"
 
 gsap.registerPlugin(ScrollTrigger)
 
-const experiments = [
-  {
-    title: "BizDeck",
-    medium: "AI Workflow System",
-    description: "咨询级演示文稿生产与存量 PDF 重建工作流。",
-    span: "col-span-2 row-span-2",
-    link: "/projects/bizdeck"
-  },
-  {
-    title: "BizCase Pro",
-    medium: "Content Factory",
-    description: "四阶段工作流驱动的商业案例与教参生成平台。",
-    span: "col-span-1 row-span-1",
-    link: "/projects/bizcase"
-  },
-  {
-    title: "IntelliPortfolio",
-    medium: "Financial RAG",
-    description: "贯穿多用户资产管理与异步研报的投研工作台。",
-    span: "col-span-1 row-span-2",
-    link: "/projects/intelliportfolio"
-  },
-  {
-    title: "Clone Me",
-    medium: "Agent & IM",
-    description: "企业微信加密回调、防重复的消息合成分身系统。",
-    span: "col-span-1 row-span-1",
-    link: "/projects/cloneme"
-  },
-  {
-    title: "Job Scout",
-    medium: "Data Pipeline",
-    description: "基于职位信息采集与 AI 批量推断的求职决策流。",
-    span: "col-span-2 row-span-1",
-    link: "/projects/jobscout"
-  },
-  {
-    title: "TransStruct Workspace",
-    medium: "Translation Tool",
-    description: "将翻译、批注与协同合而为一的 PDF 本地资产化工具。",
-    span: "col-span-1 row-span-1",
-    link: "/projects/yigou"
-  },
-  {
-    title: "Theory Validator",
-    medium: "Semantic Check",
-    description: "跨越字面比对、直击隐性逻辑的理论框架查重系统。",
-    span: "col-span-1 row-span-1",
-    link: "/projects/theorycheck"
-  },
-]
-
 export function WorkSection() {
+  const { locale } = useLanguage()
+  const experiments = [
+    {
+      title: "BizDeck",
+      medium: "AI Workflow System",
+      description:
+        locale === "zh"
+          ? "咨询级演示文稿生产与存量 PDF 重建工作流。"
+          : "Consulting-grade deck production workflow with legacy PDF reconstruction.",
+      span: "col-span-2 row-span-2",
+      link: "/projects/bizdeck",
+    },
+    {
+      title: "BizCase Pro",
+      medium: "Content Factory",
+      description:
+        locale === "zh"
+          ? "四阶段工作流驱动的商业案例与教参生成平台。"
+          : "Four-stage workflow for business case and teaching-note generation.",
+      span: "col-span-1 row-span-1",
+      link: "/projects/bizcase",
+    },
+    {
+      title: "IntelliPortfolio",
+      medium: "Financial RAG",
+      description:
+        locale === "zh"
+          ? "贯穿多用户资产管理与异步研报的投研工作台。"
+          : "Research workspace for multi-user assets and async report generation.",
+      span: "col-span-1 row-span-2",
+      link: "/projects/intelliportfolio",
+    },
+    {
+      title: "Clone Me",
+      medium: "Agent & IM",
+      description:
+        locale === "zh"
+          ? "企业微信加密回调与防重复消息处理系统。"
+          : "WeCom encrypted callback and duplicate-safe message automation.",
+      span: "col-span-1 row-span-1",
+      link: "/projects/cloneme",
+    },
+    {
+      title: "Job Scout",
+      medium: "Data Pipeline",
+      description:
+        locale === "zh"
+          ? "基于职位采集与 AI 推断的求职决策流。"
+          : "Job-search decision pipeline powered by crawling and AI inference.",
+      span: "col-span-2 row-span-1",
+      link: "/projects/jobscout",
+    },
+    {
+      title: "TransStruct Workspace",
+      medium: "Translation Tool",
+      description:
+        locale === "zh"
+          ? "集翻译、批注与协同于一体的 PDF 资产化工具。"
+          : "A single workspace for PDF translation, annotation, and collaboration.",
+      span: "col-span-1 row-span-1",
+      link: "/projects/yigou",
+    },
+    {
+      title: "Theory Validator",
+      medium: "Semantic Check",
+      description:
+        locale === "zh"
+          ? "跨越字面比对、识别隐性逻辑的理论查重系统。"
+          : "Theory-duplication checker beyond literal overlap to semantic reasoning.",
+      span: "col-span-1 row-span-1",
+      link: "/projects/theorycheck",
+    },
+  ]
+
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
@@ -69,7 +92,6 @@ export function WorkSection() {
     if (!sectionRef.current || !headerRef.current || !gridRef.current) return
 
     const ctx = gsap.context(() => {
-      // Header slide in from left
       gsap.fromTo(
         headerRef.current,
         { x: -60, opacity: 0 },
@@ -109,15 +131,15 @@ export function WorkSection() {
 
   return (
     <section ref={sectionRef} id="work" className="relative py-20 md:py-24 pl-6 md:pl-28 pr-6 md:pr-12">
-      {/* Section header */}
       <div ref={headerRef} className="mb-12 flex items-end justify-between">
         <div>
           <span className="font-mono text-xs md:text-sm uppercase tracking-[0.3em] text-accent">01 / Portfolio</span>
-          <h2 className="mt-2 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">核心工程矩阵</h2>
+          <h2 className="mt-2 font-serif text-5xl md:text-7xl tracking-tight">
+            {locale === "zh" ? "核心工程矩阵" : "Core Engineering Matrix"}
+          </h2>
         </div>
       </div>
 
-      {/* Asymmetric grid */}
       <div
         ref={gridRef}
         className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[180px] md:auto-rows-[200px]"
@@ -176,11 +198,8 @@ function WorkCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {experiment.link ? (
-        <Link href={experiment.link} className="absolute inset-0 z-20" />
-      ) : null}
+      {experiment.link ? <Link href={experiment.link} className="absolute inset-0 z-20" /> : null}
 
-      {/* Background layer */}
       <div
         className={cn(
           "absolute inset-0 bg-accent/5 transition-opacity duration-500",
@@ -188,14 +207,11 @@ function WorkCard({
         )}
       />
 
-      {/* Content */}
       <div className="relative z-10">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          {experiment.medium}
-        </span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{experiment.medium}</span>
         <h3
           className={cn(
-            "mt-3 font-[var(--font-bebas)] text-2xl md:text-4xl tracking-tight transition-colors duration-300",
+            "mt-3 font-serif text-2xl md:text-4xl tracking-tight transition-colors duration-300",
             isActive ? "text-accent" : "text-foreground",
           )}
         >
@@ -203,7 +219,6 @@ function WorkCard({
         </h3>
       </div>
 
-      {/* Description - reveals on hover */}
       <div className="relative z-10">
         <p
           className={cn(
@@ -215,7 +230,6 @@ function WorkCard({
         </p>
       </div>
 
-      {/* Index marker */}
       <span
         className={cn(
           "absolute bottom-4 right-4 font-mono text-[10px] transition-colors duration-300",
@@ -225,7 +239,6 @@ function WorkCard({
         {String(index + 1).padStart(2, "0")}
       </span>
 
-      {/* Corner line */}
       <div
         className={cn(
           "absolute top-0 right-0 w-12 h-12 transition-all duration-500",

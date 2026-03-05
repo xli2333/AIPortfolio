@@ -1,12 +1,14 @@
 ﻿"use client"
 
 import { useRef, useEffect } from "react"
+import { useLanguage } from "@/components/language-provider"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
 export function ColophonSection() {
+  const { locale } = useLanguage()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
@@ -17,7 +19,6 @@ export function ColophonSection() {
     if (!sectionRef.current) return
 
     const ctx = gsap.context(() => {
-      // Header slide in
       if (headerRef.current) {
         gsap.from(headerRef.current, {
           x: -60,
@@ -32,7 +33,6 @@ export function ColophonSection() {
         })
       }
 
-      // Grid columns fade up with stagger
       if (gridRef.current) {
         const columns = gridRef.current.querySelectorAll(":scope > div")
         gsap.from(columns, {
@@ -48,7 +48,6 @@ export function ColophonSection() {
           },
         })
       }
-
     }, sectionRef)
 
     return () => ctx.revert()
@@ -60,15 +59,14 @@ export function ColophonSection() {
       id="colophon"
       className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12 border-t border-border/30"
     >
-      {/* Section header */}
       <div ref={headerRef} className="mb-16">
         <span className="font-mono text-sm md:text-base uppercase tracking-[0.3em] text-accent">02 / Stack</span>
-        <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">技术栈与构建环境</h2>
+        <h2 className="mt-4 font-serif text-5xl md:text-7xl tracking-tight">
+          {locale === "zh" ? "技术栈与构建环境" : "Technology Stack & Build Environment"}
+        </h2>
       </div>
 
-      {/* Multi-column layout */}
       <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 auto-rows-fr">
-        {/* Frontend */}
         <div className="rounded-sm border border-border/30 bg-background/20 p-4 md:p-5">
           <h4 className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Frontend</h4>
           <ul className={stackGridClass}>
@@ -81,7 +79,6 @@ export function ColophonSection() {
           </ul>
         </div>
 
-        {/* Backend & Data */}
         <div className="rounded-sm border border-border/30 bg-background/20 p-4 md:p-5">
           <h4 className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Backend</h4>
           <ul className={stackGridClass}>
@@ -99,7 +96,6 @@ export function ColophonSection() {
           </ul>
         </div>
 
-        {/* AI & Animation */}
         <div className="rounded-sm border border-border/30 bg-background/20 p-4 md:p-5">
           <h4 className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Ecosystem</h4>
           <ul className={stackGridClass}>
@@ -113,18 +109,16 @@ export function ColophonSection() {
           </ul>
         </div>
 
-        {/* Role */}
         <div className="rounded-sm border border-border/30 bg-background/20 p-4 md:p-5">
           <h4 className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Role</h4>
           <ul className="space-y-2">
-            <li className={stackItemClass}>产品架构</li>
-            <li className={stackItemClass}>全栈开发</li>
+            <li className={stackItemClass}>{locale === "zh" ? "产品架构" : "Product Architecture"}</li>
+            <li className={stackItemClass}>{locale === "zh" ? "全栈开发" : "Full-Stack Development"}</li>
             <li className={stackItemClass}>Web + Data</li>
             <li className={stackItemClass}>RAG Engineering</li>
           </ul>
         </div>
 
-        {/* Delivery */}
         <div className="rounded-sm border border-border/30 bg-background/20 p-4 md:p-5">
           <h4 className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Delivery</h4>
           <ul className="space-y-2">
@@ -136,7 +130,6 @@ export function ColophonSection() {
           </ul>
         </div>
 
-        {/* Contact */}
         <div className="rounded-sm border border-border/30 bg-background/20 p-4 md:p-5">
           <h4 className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">Contact</h4>
           <ul className="flex items-center gap-3">
@@ -182,7 +175,6 @@ export function ColophonSection() {
           </ul>
         </div>
       </div>
-
     </section>
   )
 }

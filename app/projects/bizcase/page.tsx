@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { projects } from "@/data/projects"
+import { useLocalizedProject } from "@/hooks/use-localized-project"
+import { useProjectPageCopy } from "@/hooks/use-project-page-copy"
 import { AnimatedNoise } from "@/components/animated-noise"
 import { SplitFlapText, SplitFlapAudioProvider } from "@/components/split-flap-text"
 import { ProjectLiveLink } from "@/components/project-live-link"
@@ -15,7 +16,8 @@ import Image from "next/image"
 gsap.registerPlugin(ScrollTrigger)
 
 export default function BizCasePage() {
-  const project = projects.bizcase
+  const project = useLocalizedProject("bizcase")
+  const t = useProjectPageCopy()
   
   const heroRef = useRef<HTMLElement>(null)
   
@@ -43,8 +45,8 @@ export default function BizCasePage() {
       {/* Floating Meta */}
       <div className="hidden md:block fixed top-12 right-12 z-50 pointer-events-none">
         <div className="border border-border bg-background/80 backdrop-blur-md px-4 py-3 font-mono text-[10px] uppercase tracking-widest text-foreground/90 flex flex-col items-end gap-1">
-          <span>Role: {project.meta.role}</span>
-          <span>Type: {project.meta.type}</span>
+          <span>{t.roleLabel}: {project.meta.role}</span>
+          <span>{t.typeLabel}: {project.meta.type}</span>
           <span>{project.meta.year}</span>
         </div>
       </div>
@@ -64,10 +66,10 @@ export default function BizCasePage() {
           </p>
           <div className="mt-6 flex flex-wrap gap-2 md:hidden">
             <span className="border border-border bg-background/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-foreground/90">
-              Role: {project.meta.role}
+              {t.roleLabel}: {project.meta.role}
             </span>
             <span className="border border-border bg-background/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-foreground/90">
-              Type: {project.meta.type}
+              {t.typeLabel}: {project.meta.type}
             </span>
             {project.meta.year ? (
               <span className="border border-border bg-background/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-foreground/90">
@@ -75,7 +77,7 @@ export default function BizCasePage() {
               </span>
             ) : null}
           </div>
-          <ProjectLiveLink href="https://biz-case.vercel.app/" />
+          <ProjectLiveLink href="https://biz-case.vercel.app/" label={t.tryLink} />
         </div>
       </section>
 
@@ -83,8 +85,7 @@ export default function BizCasePage() {
       <section className="py-24 pl-6 md:pl-28 pr-6 md:pr-12 border-t border-border bg-muted/5">
         <div className="max-w-7xl">
           <span className="font-mono text-xs uppercase tracking-widest text-foreground/90 block mb-20">
-            [00] Core Capabilities / 核心能力
-          </span>
+            {t.sections.core}</span>
           <div className="space-y-32">
             {project.coreCapabilities?.map((cap, i) => (
               <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -93,7 +94,7 @@ export default function BizCasePage() {
                     <span className="font-mono text-sm text-accent tracking-widest">0{i+1}</span>
                     <div className="h-[1px] flex-1 bg-border" />
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-medium tracking-tight text-foreground leading-tight">
+                  <h3 className="text-3xl md:text-4xl font-serif tracking-tight text-foreground leading-tight">
                     {cap.title}
                   </h3>
                   <p className="text-lg text-foreground/80 leading-relaxed font-light">
@@ -110,9 +111,7 @@ export default function BizCasePage() {
                           fill
                           className="object-cover object-top opacity-90 group-hover:opacity-100 transition-all duration-700 group-hover:scale-[1.02]"
                         />
-                        <div className="absolute bottom-4 right-4 bg-background/90 backdrop-blur-md px-3 py-1.5 border border-border font-mono text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                          Click to Enlarge / 点击放大
-                        </div>
+                        <div className="absolute bottom-4 right-4 bg-background/90 backdrop-blur-md px-3 py-1.5 border border-border font-mono text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">{t.clickToEnlarge}</div>
                       </div>
                     </DialogTrigger>
                     <DialogContent className="max-w-[95vw] w-full md:max-w-7xl h-auto md:h-[85vh] p-0 border-none bg-zinc-950/95 backdrop-blur-3xl flex flex-col md:flex-row gap-0 overflow-hidden rounded-none shadow-2xl">
@@ -137,13 +136,13 @@ export default function BizCasePage() {
                             <div className="h-[1px] flex-1 bg-white/10" />
                           </div>
                           
-                          <h4 className="font-medium text-3xl text-white mb-8 tracking-tight leading-tight">
+                          <h4 className="font-serif text-3xl text-white mb-8 tracking-tight leading-tight">
                             {cap.title}
                           </h4>
                           
                           <div className="space-y-10">
                             <div className="space-y-3">
-                              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">Feature Description / 能力释义</span>
+                              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">{t.featureDescription}</span>
                               <p className="text-base text-zinc-300 font-light leading-relaxed">
                                 {cap.description}
                               </p>
@@ -169,8 +168,7 @@ export default function BizCasePage() {
         <div className="max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-16">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-foreground/90 block mb-8">
-              [01] User Pain Points
-            </span>
+              {t.sections.pain}</span>
             <ul className="space-y-6">
               {project.problems.map((prob, i) => (
                 <li key={i} className="flex gap-4 items-start">
@@ -182,8 +180,7 @@ export default function BizCasePage() {
           </div>
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-foreground/90 block mb-8">
-              [02] User Journey & Solutions
-            </span>
+              {t.sections.journey}</span>
             <Tabs defaultValue="path-0" className="w-full">
               <TabsList className="w-full justify-start border-b border-border rounded-none bg-transparent h-auto p-0 gap-4">
                 {project.solutionPaths.map((path, i) => (
@@ -192,7 +189,7 @@ export default function BizCasePage() {
                     value={`path-${i}`}
                     className="rounded-none border-b-2 border-transparent data-[state=active]:border-accent data-[state=active]:bg-transparent px-0 py-2 font-mono text-xs uppercase text-foreground/90"
                   >
-                    Path {['A', 'B', 'C'][i]}
+                    {t.pathLabel(i)}
                   </TabsTrigger>
                 ))}
               </TabsList>
@@ -212,8 +209,7 @@ export default function BizCasePage() {
         <div className="max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-16">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-foreground/90 block mb-8">
-              [03] Product Features
-            </span>
+              {t.sections.features}</span>
             <div className="space-y-4">
               {project.productFeatures.map((tech, i) => (
                 <div key={i} className="border border-border p-4 bg-background">
@@ -224,12 +220,11 @@ export default function BizCasePage() {
           </div>
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-foreground/90 block mb-8">
-              [04] Business Impact
-            </span>
+              {t.sections.impact}</span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {project.results.map((res, i) => (
                 <div key={i} className="p-4 border border-border bg-background flex flex-col justify-between min-h-32">
-                  <span className="font-mono text-[10px] text-foreground/90">Result 0{i+1}</span>
+                  <span className="font-mono text-[10px] text-foreground/90">{t.resultLabel} 0{i+1}</span>
                   <p className="text-sm font-medium leading-relaxed break-words text-foreground/90">{res}</p>
                 </div>
               ))}
@@ -243,9 +238,8 @@ export default function BizCasePage() {
         <div className="max-w-7xl">
           <div className="mb-12">
             <span className="font-mono text-xs uppercase tracking-widest text-foreground/90 block mb-4">
-              [05] User Flow Manual
-            </span>
-            <h3 className="text-3xl font-medium tracking-tight text-foreground/90">产品交互与使用流</h3>
+              {t.sections.flow}</span>
+            <h3 className="text-3xl font-serif tracking-tight text-foreground/90">{t.flowTitle}</h3>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -265,10 +259,10 @@ export default function BizCasePage() {
                   </div>
                   <h4 className="font-medium text-sm mb-1 text-foreground/90">{shot.focus}</h4>
                   <p className="text-xs text-foreground/90 mb-1 line-clamp-1">
-                    <span className="font-mono">场景动作:</span> {shot.action}
+                    <span className="font-mono">{t.sceneActionLabel}:</span> {shot.action}
                   </p>
                   <p className="text-xs text-foreground/90 line-clamp-1">
-                    <span className="font-mono text-accent">产品设计:</span> {shot.evidence}
+                    <span className="font-mono text-accent">{t.productDesignLabel}:</span> {shot.evidence}
                   </p>
                 </DialogTrigger>
                 <DialogContent className="max-w-[95vw] w-full md:max-w-7xl h-auto md:h-[85vh] p-0 border-none bg-zinc-950/95 backdrop-blur-3xl flex flex-col md:flex-row gap-0 overflow-hidden rounded-none shadow-2xl">
@@ -293,13 +287,13 @@ export default function BizCasePage() {
                         <div className="h-[1px] flex-1 bg-white/10" />
                       </div>
                       
-                      <h4 className="font-medium text-3xl text-white mb-8 tracking-tight leading-tight">
+                      <h4 className="font-serif text-3xl text-white mb-8 tracking-tight leading-tight">
                         {shot.focus}
                       </h4>
                       
                       <div className="space-y-10">
                         <div className="space-y-3">
-                          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">User Action / 场景动作</span>
+                          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">{t.userActionLabel}</span>
                           <p className="text-base text-zinc-300 font-light leading-relaxed">
                             {shot.action}
                           </p>
@@ -307,7 +301,7 @@ export default function BizCasePage() {
                         
                         <div className="space-y-3 p-6 bg-white/[0.03] border border-white/5 relative group">
                           <div className="absolute -top-[1px] left-6 w-8 h-[1px] bg-accent" />
-                          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">Design Logic / 产品设计逻辑</span>
+                          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">{t.designLogicLabel}</span>
                           <p className="text-lg font-medium text-white leading-snug">
                             {shot.evidence}
                           </p>
@@ -330,9 +324,8 @@ export default function BizCasePage() {
       <section className="py-24 pl-6 md:pl-28 pr-6 md:pr-12 border-t border-border">
         <div className="max-w-3xl">
           <span className="font-mono text-xs uppercase tracking-widest text-foreground/90 block mb-8">
-            [06] Design Philosophy
-          </span>
-          <h3 className="text-3xl font-medium tracking-tight mb-8 text-foreground/90">产品设计底层逻辑</h3>
+            {t.sections.philosophy}</span>
+          <h3 className="text-3xl font-serif tracking-tight mb-8 text-foreground/90">{t.designPhilosophyTitle}</h3>
           <Accordion type="single" collapsible className="w-full">
             {project.designPhilosophy.map((depth, i) => (
               <AccordionItem key={i} value={`item-${i}`} className="border-border">

@@ -1,15 +1,16 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
-
-const navItems = [
-  { id: "hero", label: "系统架构" },
-  { id: "work", label: "核心作品" },
-  { id: "colophon", label: "技术与构建" },
-]
+import { useLanguage } from "@/components/language-provider"
 
 export function SideNav() {
+  const { locale } = useLanguage()
+  const navItems = [
+    { id: "hero", label: locale === "zh" ? "系统架构" : "System" },
+    { id: "work", label: locale === "zh" ? "核心作品" : "Projects" },
+    { id: "colophon", label: locale === "zh" ? "技术构建" : "Stack" },
+  ]
   const [activeSection, setActiveSection] = useState("hero")
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export function SideNav() {
     })
 
     return () => observer.disconnect()
-  }, [])
+  }, [locale])
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
