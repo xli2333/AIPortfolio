@@ -207,11 +207,11 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
           divider: "rgba(0, 0, 0, 0.2)",
         }
       : {
-          bg: isSettled ? "rgba(251, 146, 60, 0.38)" : "rgba(254, 215, 170, 0.5)",
-          text: isSettled ? "#9a3412" : "#ea580c",
-          divider: isSettled ? "rgba(154, 52, 18, 0.35)" : "rgba(234, 88, 12, 0.28)",
-          border: isSettled ? "rgba(194, 65, 12, 0.38)" : "rgba(234, 88, 12, 0.3)",
-          shadow: "inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(154, 52, 18, 0.15)",
+          bg: isSettled ? "rgba(255, 237, 213, 0.75)" : "rgba(254, 215, 170, 0.55)",
+          text: isSettled ? "#f97316" : "#fb923c",
+          divider: isSettled ? "rgba(249, 115, 22, 0.4)" : "rgba(249, 115, 22, 0.28)",
+          border: isSettled ? "rgba(249, 115, 22, 0.5)" : "rgba(249, 115, 22, 0.35)",
+          shadow: "inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -1px 0 rgba(249, 115, 22, 0.18)",
         }
 
   useEffect(() => {
