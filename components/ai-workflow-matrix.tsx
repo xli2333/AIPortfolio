@@ -43,8 +43,8 @@ export function AIWorkflowMatrix() {
     { label: "03. INTELLIPORTFOLIO", metric: "FINANCE_RAG" },
     { label: "04. CLONE ME", metric: "AGENT_IM" },
     { label: "05. JOB SCOUT", metric: "DATA_PIPELINE" },
-    { label: "06. TRANSLATION HUB", metric: "PDF_ASSET_SYNC" },
-    { label: "07. THEORY CHECK", metric: "SEMANTIC_ENGINE" },
+    { label: "06. TRANSSTRUCT WORKSPACE", metric: "PDF_ASSET_SYNC" },
+    { label: "07. THEORY VALIDATOR", metric: "SEMANTIC_ENGINE" },
   ]
 
   return (
