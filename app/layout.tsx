@@ -2,6 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
 import { SmoothScroll } from "@/components/smooth-scroll"
+import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeToggle } from "@/components/theme-toggle"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -34,11 +36,20 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark bg-background">
+    <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased overflow-x-hidden">
-        <div className="noise-overlay" aria-hidden="true" />
-        <SmoothScroll>{children}</SmoothScroll>
-        <Analytics />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          storageKey="portfolio-theme"
+        >
+          <div className="noise-overlay" aria-hidden="true" />
+          <ThemeToggle />
+          <SmoothScroll>{children}</SmoothScroll>
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )

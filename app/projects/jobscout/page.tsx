@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react"
 import { projects } from "@/data/projects"
 import { AnimatedNoise } from "@/components/animated-noise"
 import { SplitFlapText, SplitFlapAudioProvider } from "@/components/split-flap-text"
+import { ProjectLiveLink } from "@/components/project-live-link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
@@ -60,6 +61,7 @@ export default function JobScoutPage() {
           <p className="mt-6 text-xl text-foreground/80 leading-relaxed font-light max-w-3xl">
             {project.summary}
           </p>
+          <ProjectLiveLink href="https://job-search-roan-ten.vercel.app/" />
         </div>
       </section>
 

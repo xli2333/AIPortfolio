@@ -4,6 +4,7 @@ import type React from "react"
 import { motion } from "framer-motion"
 import { useMemo, useState, useCallback, useEffect, useRef, createContext, useContext } from "react"
 import { Volume2, VolumeX } from "lucide-react"
+import { useTheme } from "next-themes"
 
 interface AudioContextType {
   isMuted: boolean
@@ -131,7 +132,10 @@ function SplitFlapTextInner({ text, className = "", speed = 50 }: SplitFlapTextP
   const chars = useMemo(() => text.split(""), [text])
   const [animationKey, setAnimationKey] = useState(0)
   const [hasInitialized, setHasInitialized] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
   const audio = useSplitFlapAudio()
+  const { resolvedTheme } = useTheme()
+  const themeMode: "dark" | "light" = isMounted && resolvedTheme === "light" ? "light" : "dark"
 
   const handleMouseEnter = useCallback(() => {
     setAnimationKey((prev) => prev + 1)
@@ -142,6 +146,10 @@ function SplitFlapTextInner({ text, className = "", speed = 50 }: SplitFlapTextP
       setHasInitialized(true)
     }, 1000)
     return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    setIsMounted(true)
   }, [])
 
   return (
@@ -160,6 +168,7 @@ function SplitFlapTextInner({ text, className = "", speed = 50 }: SplitFlapTextP
           skipEntrance={hasInitialized}
           speed={speed}
           playClick={audio?.playClick}
+          themeMode={themeMode}
         />
       ))}
     </div>
@@ -177,9 +186,10 @@ interface SplitFlapCharProps {
   skipEntrance: boolean
   speed: number
   playClick?: () => void
+  themeMode: "dark" | "light"
 }
 
-function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playClick }: SplitFlapCharProps) {
+function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playClick, themeMode }: SplitFlapCharProps) {
   const displayChar = char
   const isSpace = char === " " || char === "　"
   const [currentChar, setCurrentChar] = useState(skipEntrance ? displayChar : " ")
@@ -189,8 +199,20 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
 
   const tileDelay = 0.15 * index
 
-  const bgColor = isSettled ? "hsl(0, 0%, 0%)" : "rgba(249, 115, 22, 0.2)"
-  const textColor = isSettled ? "#ffffff" : "#f97316"
+  const palette =
+    themeMode === "dark"
+      ? {
+          bg: isSettled ? "hsl(0, 0%, 0%)" : "rgba(249, 115, 22, 0.2)",
+          text: isSettled ? "#ffffff" : "#f97316",
+          divider: "rgba(0, 0, 0, 0.2)",
+        }
+      : {
+          bg: isSettled ? "rgba(251, 146, 60, 0.38)" : "rgba(254, 215, 170, 0.5)",
+          text: isSettled ? "#9a3412" : "#ea580c",
+          divider: isSettled ? "rgba(154, 52, 18, 0.35)" : "rgba(234, 88, 12, 0.28)",
+          border: isSettled ? "rgba(194, 65, 12, 0.38)" : "rgba(234, 88, 12, 0.3)",
+          shadow: "inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(154, 52, 18, 0.15)",
+        }
 
   useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current)
@@ -255,17 +277,23 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
         fontSize: "clamp(2rem, 8vw, 6rem)",
         width: "1em",
         height: "1.2em",
-        backgroundColor: bgColor,
+        backgroundColor: palette.bg,
+        ...(themeMode === "light"
+          ? {
+              border: `1px solid ${palette.border}`,
+              boxShadow: palette.shadow,
+            }
+          : {}),
         transformStyle: "preserve-3d",
         transition: "background-color 0.15s ease",
       }}
     >
-      <div className="absolute inset-x-0 top-1/2 h-[1px] bg-black/20 pointer-events-none z-10" />
+      <div className="absolute inset-x-0 top-1/2 h-[1px] pointer-events-none z-10" style={{ backgroundColor: palette.divider }} />
 
       <div className="absolute inset-x-0 top-0 bottom-1/2 flex items-end justify-center overflow-hidden">
         <span
           className="block translate-y-[0.52em] leading-none transition-colors duration-150"
-          style={{ color: textColor }}
+          style={{ color: palette.text }}
         >
           {currentChar}
         </span>
@@ -274,7 +302,7 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
       <div className="absolute inset-x-0 top-1/2 bottom-0 flex items-start justify-center overflow-hidden">
         <span
           className="-translate-y-[0.52em] leading-none transition-colors duration-150"
-          style={{ color: textColor }}
+          style={{ color: palette.text }}
         >
           {currentChar}
         </span>
@@ -291,7 +319,7 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
         }}
         className="absolute inset-x-0 top-0 bottom-1/2 origin-bottom overflow-hidden"
         style={{
-          backgroundColor: bgColor,
+          backgroundColor: palette.bg,
           transformStyle: "preserve-3d",
           backfaceVisibility: "hidden",
           transition: "background-color 0.15s ease",
@@ -300,7 +328,7 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
         <div className="flex h-full items-end justify-center">
           <span
             className="translate-y-[0.52em] leading-none transition-colors duration-150"
-            style={{ color: textColor }}
+            style={{ color: palette.text }}
           >
             {currentChar}
           </span>
