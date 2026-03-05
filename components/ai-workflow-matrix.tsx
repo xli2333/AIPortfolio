@@ -35,7 +35,7 @@ export function AIWorkflowMatrix() {
     return () => clearInterval(interval)
   }, [])
 
-  if (!mounted) return <div className="w-full h-full min-h-[500px] border border-border/30 bg-[#050505]" />
+  if (!mounted) return <div className="w-full h-full min-h-[360px] md:min-h-[500px] border border-border/30 bg-[#050505]" />
 
   const stages = [
     { label: "01. BIZDECK", metric: "PPT_WORKFLOW" },
@@ -48,7 +48,7 @@ export function AIWorkflowMatrix() {
   ]
 
   return (
-    <div className="relative w-full h-[450px] md:h-[500px] border border-accent/20 bg-[#050505] overflow-hidden group flex origin-left">
+    <div className="relative w-full h-[360px] sm:h-[420px] md:h-[500px] border border-accent/20 bg-[#050505] overflow-hidden group flex origin-left">
       
       {/* 0. Complex Neural Network Background - Fixed Visibility */}
       <div className="absolute inset-0 z-0">
@@ -99,7 +99,7 @@ export function AIWorkflowMatrix() {
       </div>
 
       {/* 1. Left Data Stream (Matrix Code Rain) */}
-      <div className="w-1/3 h-full border-r border-accent/30 bg-black/40 backdrop-blur-sm relative overflow-hidden flex z-10">
+      <div className="hidden md:flex md:w-1/3 h-full border-r border-accent/30 bg-black/40 backdrop-blur-sm relative overflow-hidden z-10">
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none" />
         
         {Array.from({ length: 12 }).map((_, i) => (
@@ -114,7 +114,7 @@ export function AIWorkflowMatrix() {
       </div>
 
       {/* 2. Middle Workflow Pipeline */}
-      <div className="w-2/3 h-full p-8 relative flex flex-col justify-center z-10 bg-black/40 backdrop-blur-md">
+      <div className="w-full md:w-2/3 h-full p-4 sm:p-6 md:p-8 relative flex flex-col justify-center z-10 bg-black/40 backdrop-blur-md">
         
         {/* Scanning Line Background - Brighter */}
         <motion.div
@@ -176,7 +176,7 @@ export function AIWorkflowMatrix() {
         </div>
         
         {/* Terminal Log Output at Bottom - High Contrast */}
-        <div className="absolute bottom-8 right-8 left-8 font-mono text-[10px] text-accent p-4 border border-accent/30 bg-black/80 backdrop-blur-xl shadow-[0_0_15px_rgba(249,115,22,0.15)]">
+        <div className="absolute bottom-4 right-4 left-4 md:bottom-8 md:right-8 md:left-8 font-mono text-[9px] md:text-[10px] text-accent p-3 md:p-4 border border-accent/30 bg-black/80 backdrop-blur-xl shadow-[0_0_15px_rgba(249,115,22,0.15)]">
           <p className="opacity-60 mb-1">{`> Loading tensor processing module...`}</p>
           <p className="opacity-80 mb-1">{`> Establishing connection to RAG vector DB...`}</p>
           <motion.p

@@ -154,7 +154,7 @@ function SplitFlapTextInner({ text, className = "", speed = 50 }: SplitFlapTextP
 
   return (
     <div
-      className={`inline-flex gap-[0.02em] items-center cursor-pointer ${className}`}
+      className={`inline-flex max-w-full flex-wrap sm:flex-nowrap gap-x-[0.02em] gap-y-[0.04em] items-center cursor-pointer ${className}`}
       aria-label={text}
       onMouseEnter={handleMouseEnter}
       style={{ perspective: "1000px" }}
@@ -260,8 +260,8 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
     return (
       <div
         style={{
-          width: "0.35em",
-          fontSize: "clamp(2rem, 8vw, 6rem)",
+          width: "0.3em",
+          fontSize: "clamp(1.3rem, 8vw, 6rem)",
         }}
       />
     )
@@ -274,7 +274,7 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
       transition={{ delay: tileDelay, duration: 0.3, ease: "easeOut" }}
       className="relative overflow-hidden flex items-center justify-center font-mono font-bold"
       style={{
-        fontSize: "clamp(2rem, 8vw, 6rem)",
+        fontSize: "clamp(1.3rem, 8vw, 6rem)",
         width: "1em",
         height: "1.2em",
         backgroundColor: palette.bg,

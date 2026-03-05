@@ -35,11 +35,11 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="hero" className="relative min-h-screen flex flex-col pt-32 pb-12 pl-6 md:pl-16 lg:pl-28 pr-6 md:pr-12 overflow-hidden">
+    <section ref={sectionRef} id="hero" className="relative min-h-screen flex flex-col pt-28 md:pt-32 pb-12 pl-6 md:pl-16 lg:pl-28 pr-6 md:pr-12 overflow-hidden">
       <AnimatedNoise opacity={0.03} />
 
       {/* Left vertical labels */}
-      <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2">
+      <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 hidden md:block">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground -rotate-90 origin-left block whitespace-nowrap">
           PORTFOLIO
         </span>
@@ -60,7 +60,7 @@ export function HeroSection() {
           
           {/* Left Column: Text & CTA */}
           <div className="xl:col-span-6 flex flex-col justify-start z-10 relative">
-            <h2 className="font-[var(--font-bebas)] text-4xl md:text-5xl lg:text-6xl tracking-tight whitespace-nowrap text-foreground">
+            <h2 className="font-[var(--font-bebas)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight whitespace-normal md:whitespace-nowrap text-foreground">
               AI应用作品集
             </h2>
 
@@ -84,7 +84,7 @@ export function HeroSection() {
           </div>
 
           {/* Right Column: Cyber Visualizer */}
-          <div className="xl:col-span-6 relative w-full h-[500px] md:h-[600px] flex items-center justify-start xl:-ml-4">
+          <div className="xl:col-span-6 relative w-full h-[360px] sm:h-[460px] md:h-[600px] flex items-center justify-start xl:-ml-4">
             <div className="w-full max-w-[800px]">
               <AIWorkflowMatrix />
             </div>

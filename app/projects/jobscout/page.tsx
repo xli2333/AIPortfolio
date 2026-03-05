@@ -41,7 +41,7 @@ export default function JobScoutPage() {
       <AnimatedNoise opacity={0.03} />
 
       {/* Floating Meta */}
-      <div className="fixed top-8 right-8 md:top-12 md:right-12 z-50 pointer-events-none">
+      <div className="hidden md:block fixed top-12 right-12 z-50 pointer-events-none">
         <div className="border border-border bg-background/80 backdrop-blur-md px-4 py-3 font-mono text-[10px] uppercase tracking-widest text-foreground/90 flex flex-col items-end gap-1">
           <span>角色: {project.meta.role}</span>
           <span>类型: {project.meta.type}</span>
@@ -61,6 +61,19 @@ export default function JobScoutPage() {
           <p className="mt-6 text-xl text-foreground/80 leading-relaxed font-light max-w-3xl">
             {project.summary}
           </p>
+          <div className="mt-6 flex flex-wrap gap-2 md:hidden">
+            <span className="border border-border bg-background/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-foreground/90">
+              Role: {project.meta.role}
+            </span>
+            <span className="border border-border bg-background/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-foreground/90">
+              Type: {project.meta.type}
+            </span>
+            {project.meta.year ? (
+              <span className="border border-border bg-background/80 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wide text-foreground/90">
+                {project.meta.year}
+              </span>
+            ) : null}
+          </div>
           <ProjectLiveLink href="https://job-search-roan-ten.vercel.app/" />
         </div>
       </section>
@@ -114,7 +127,7 @@ export default function JobScoutPage() {
                         </div>
                       </div>
                       
-                      <div className="flex-1 min-w-[320px] p-8 md:p-12 border-t md:border-t-0 md:border-l border-white/10 flex flex-col justify-between bg-zinc-900/50">
+                      <div className="flex-1 min-w-0 md:min-w-[320px] p-6 md:p-12 border-t md:border-t-0 md:border-l border-white/10 flex flex-col justify-between bg-zinc-900/50">
                         <div>
                           <div className="flex items-center gap-3 mb-8">
                             <span className="px-2 py-1 bg-accent/20 text-accent font-mono text-[10px] tracking-tighter border border-accent/30">
@@ -212,11 +225,11 @@ export default function JobScoutPage() {
             <span className="font-mono text-xs uppercase tracking-widest text-foreground/90 block mb-8">
               [04] 业务影响 / Business Impact
             </span>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {project.results.map((res, i) => (
-                <div key={i} className="p-4 border border-border bg-background flex flex-col justify-between h-32">
+                <div key={i} className="p-4 border border-border bg-background flex flex-col justify-between min-h-32">
                   <span className="font-mono text-[10px] text-foreground/90">Result 0{i+1}</span>
-                  <p className="text-sm font-medium text-foreground/90">{res}</p>
+                  <p className="text-sm font-medium leading-relaxed break-words text-foreground/90">{res}</p>
                 </div>
               ))}
             </div>
@@ -270,7 +283,7 @@ export default function JobScoutPage() {
                     </div>
                   </div>
                   
-                  <div className="flex-1 min-w-[320px] p-8 md:p-12 border-t md:border-t-0 md:border-l border-white/10 flex flex-col justify-between bg-zinc-900/50">
+                  <div className="flex-1 min-w-0 md:min-w-[320px] p-6 md:p-12 border-t md:border-t-0 md:border-l border-white/10 flex flex-col justify-between bg-zinc-900/50">
                     <div>
                       <div className="flex items-center gap-3 mb-8">
                         <span className="px-2 py-1 bg-accent/20 text-accent font-mono text-[10px] tracking-tighter border border-accent/30">
