@@ -155,6 +155,76 @@ const EN_PROJECT_COPY: Record<string, EnglishProjectCopy> = {
       "Delivered a deployable client-side workflow with predictable operating cost.",
     ],
   },
+  writingworkspace: {
+    title: "Writing Workspace",
+    tagline: "A publish-ready AI writing workspace from research and drafting to illustrations and WeChat delivery.",
+    summary:
+      "Writing Workspace turns Chinese business writing into an auditable production pipeline with staged research, direction selection, outline approval, chunked drafting, editorial review, illustration generation, and WeChat-ready publishing.",
+    meta: { role: "Full-Stack Engineering / Writing Workflow Design", type: "AI Content Production Workspace" },
+    coreCapabilities: [
+      {
+        title: "Multi-Track Research with Direction Gates",
+        description:
+          "General, quantitative, and human-context research are consolidated into one evidence base before the system proposes multiple editorial angles for user selection and refinement.",
+      },
+      {
+        title: "Outline-First Chunked Long-Form Writing",
+        description:
+          "Outline approval, writing insights, evidence cards, and chunk planning stabilize long-form generation before section-by-section drafting begins.",
+      },
+      {
+        title: "Magazine-Grade Review and Humanization",
+        description:
+          "Assembly, editorial review, anti-AI cleanup, and line-level polish are explicit quality stages that push the draft toward publishable editorial standards.",
+      },
+      {
+        title: "Illustration and WeChat Delivery Chain",
+        description:
+          "The same workspace continues from writing into illustration planning, image generation, preview rendering, draft storage, and final distribution preparation.",
+      },
+    ],
+    problems: [
+      "Business writing is usually fragmented across search, notes, drafting, review, illustration, and publishing tools.",
+      "One-shot long-form generation causes structural rework and leaves templated AI tone throughout the draft.",
+      "Post-writing work such as illustrations, exports, and WeChat publishing often becomes a separate manual production chain.",
+    ],
+    solutionPaths: [
+      { name: "Path A: Topic-Led Article Production", description: "Configure the task, run staged research, choose an angle, approve the outline, then draft and review in sequence." },
+      { name: "Path B: Evidence-Constrained Deep Writing", description: "Inject uploaded materials and optional deep research to keep the article grounded in stronger source boundaries." },
+      { name: "Path C: Publish-Ready Refinement", description: "Continue from final draft into editorial cleanup, illustration generation, preview validation, and draft publishing preparation." },
+    ],
+    productFeatures: [
+      "Visible 5-step navigation backed by a 15-stage writing pipeline",
+      "Five editorial directions with user-guided regeneration",
+      "Writing insights, evidence cards, and chunk plan as intermediate assets",
+      "Editorial review, anti-AI cleanup, and sentence-level polish",
+      "Integrated illustration, ZIP/PDF export, and WeChat publishing workflow",
+    ],
+    designPhilosophy: [
+      {
+        title: "Structure Before Prose",
+        description: "Reasoning route and editorial angle are locked before the system spends compute on long-form drafting.",
+      },
+      {
+        title: "Publishable Over Instant",
+        description: "The goal is not fast-looking output, but controlled progression toward trustworthy, restrained, publishable writing.",
+      },
+      {
+        title: "Minimum Necessary Revision",
+        description: "Review stages aim for the smallest change set that materially improves publication quality.",
+      },
+      {
+        title: "One Workspace, One Production Line",
+        description: "Research, writing, refinement, illustration, export, and channel distribution belong to the same operating surface.",
+      },
+    ],
+    results: [
+      "Turned business writing from opaque prompting into an auditable staged production flow.",
+      "Connected research, drafting, review, humanization, illustration, and publishing in one workspace.",
+      "Supported runtime style assets, optional deep research, and modular front-end/back-end expansion.",
+      "Established a reusable interaction pattern for long-cycle Chinese content production systems.",
+    ],
+  },
   intelliportfolio: {
     title: "IntelliPortfolio",
     tagline: "An AI-assisted investment research workspace for signal-to-decision workflows.",

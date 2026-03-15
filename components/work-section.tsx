@@ -33,13 +33,23 @@ export function WorkSection() {
       link: "/projects/bizcase",
     },
     {
+      title: "Job Scout",
+      medium: "Data Pipeline",
+      description:
+        locale === "zh"
+          ? "基于职位采集与 AI 推断的求职决策流。"
+          : "Job-search decision pipeline powered by crawling and AI inference.",
+      span: "col-span-1 row-span-1",
+      link: "/projects/jobscout",
+    },
+    {
       title: "IntelliPortfolio",
       medium: "Financial RAG",
       description:
         locale === "zh"
           ? "贯穿多用户资产管理与异步研报的投研工作台。"
           : "Research workspace for multi-user assets and async report generation.",
-      span: "col-span-1 row-span-2",
+      span: "col-span-1 row-span-1",
       link: "/projects/intelliportfolio",
     },
     {
@@ -53,14 +63,14 @@ export function WorkSection() {
       link: "/projects/cloneme",
     },
     {
-      title: "Job Scout",
-      medium: "Data Pipeline",
+      title: "Writing Workspace",
+      medium: "AI Writing System",
       description:
         locale === "zh"
-          ? "基于职位采集与 AI 推断的求职决策流。"
-          : "Job-search decision pipeline powered by crawling and AI inference.",
+          ? "把研究、成文、审稿、配图与公众号发布收进同一工作台。"
+          : "One workspace for research, drafting, review, illustration, and WeChat delivery.",
       span: "col-span-2 row-span-1",
-      link: "/projects/jobscout",
+      link: "/projects/writingworkspace",
     },
     {
       title: "TransStruct Workspace",

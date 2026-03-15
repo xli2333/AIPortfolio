@@ -11,6 +11,11 @@ export interface ProjectData {
   title: string;
   tagline: string;
   summary: string;
+  securityFeatures?: string[];
+  bilingualCopy?: {
+    zh: string;
+    en: string;
+  };
   coreCapabilities?: {
     title: string;
     description: string;
@@ -192,6 +197,102 @@ export const projects: Record<string, ProjectData> = {
       { id: 'U19', url: '/projects/bizcase/U19-copilot-side-panel.png', focus: 'Copilot 侧栏精修', action: '输入改写指令并提交', evidence: 'AI 编辑抽屉与指令输入框。提升编辑效率。' },
       { id: 'U20', url: '/projects/bizcase/U20-ai-refine-overlay-stop.png', focus: 'AI 重构覆盖层', action: '观察进度，必要时停止', evidence: '重构进度与停止按钮。提高长任务可控性。' },
       { id: 'U21', url: '/projects/bizcase/U21-final-export-preview.png', focus: '导出预览页', action: '执行 PDF 导出并复核版式', evidence: '接近出版版式的正文页面。形成可交付产物。' }
+    ]
+  },
+  writingworkspace: {
+    slug: 'writingworkspace',
+    title: 'Writing Workspace',
+    tagline: '把搜索、判断、成文、审稿、配图与公众号发布收进同一条商业文章生产线。',
+    summary: 'AI Writer / Writing Workspace 是一套面向中文商业文章生产的全流程工作台。它把选题配置、多轨研究、讨论方向、大纲审阅、分段写作、终审去 AI 化、配图生成与微信发布串成一条可观测、可反复打磨、可直接交付的内容工作流。',
+    coreCapabilities: [
+      {
+        title: '多轨研究与方向闸门',
+        description: '系统先并行跑综合、量化、人文三条研究轨道，把资料收束为统一资料库，再基于资料库生成 5 个讨论方向供用户挑选和二次细化。文章不是从“直接开写”开始，而是先把判断框架锁定。',
+        image: '/projects/writingworkspace/U06-writingworkspace-06.png'
+      },
+      {
+        title: '大纲先行的长文分段写作',
+        description: '在正文生成前，用户必须先审阅文章大纲。随后系统继续提炼 writing insights、evidence cards 与 chunk plan，把长文拆成稳定的分段写作任务，再逐段成文并最终缝合为完整文章。',
+        image: '/projects/writingworkspace/U11-writingworkspace-11.png'
+      },
+      {
+        title: '杂志级终审与去 AI 化精修',
+        description: '成文之后并不会直接导出，而是进入终审循环、去 AI 化检查与句级终修。系统把“像成熟编辑写成的文章”当成发布门槛，并通过可见进度把这套质量控制流程显式化。',
+        image: '/projects/writingworkspace/U32-writingworkspace-32.png'
+      },
+      {
+        title: '配图系统与公众号发布链路',
+        description: '文章完成后还能继续进入配图系统与微信公众号发布链路。系统支持先规划插图位、再逐张渲染与回看版本，并把公众号预览、草稿落库和发布前终检都收进同一工作台。',
+        image: '/projects/writingworkspace/U28-writingworkspace-28.png'
+      }
+    ],
+    meta: {
+      year: '2026',
+      role: '全栈开发 / 写作工作流设计',
+      type: 'AI 内容生产工作台',
+    },
+    problems: [
+      '商业文章生产通常被拆散在搜索、笔记、写作、审稿、配图和发布多个工具里，信息上下文频繁断裂。',
+      '长文如果一次性直接生成，结构经常返工，文风容易漂成模板化与 AI 腔，越改越失控。',
+      '文章写完之后，配图、交付和公众号发布往往还要在外部系统重复配置，形成新的人工断层。'
+    ],
+    solutionPaths: [
+      { name: '路径 A：主题驱动的商业文章生产', description: '输入主题与任务约束 -> 多轨研究汇总资料库 -> 选择讨论方向 -> 审阅大纲 -> 分段写作 -> 终审发布。' },
+      { name: '路径 B：资料约束下的深度写作', description: '上传补充资料并按需启用 Deep Research -> 将外部证据与风格库一起注入流程 -> 生成更有边界感的专题文章。' },
+      { name: '路径 C：成稿后的精修与发布闭环', description: '在终稿阶段继续执行 Copilot、去 AI 化、配图生成、公众号预览与草稿落库，让文章直接进入可交付状态。' }
+    ],
+    productFeatures: [
+      '5 步主导航 + 15 段内部流水线：从任务配置、研究、方向、大纲到成稿与发布，全程状态可见。',
+      '五个候选讨论方向 + 补充偏好重生成功能：先选切口，再定正文，不让论点在写作中途漂移。',
+      'writing_insights、evidence_cards、chunk_plan 三套中间产物：把“怎么写”与“写什么证据”显式化。',
+      '终审、去 AI 化、句级终修三道质量门：把可发布性当作独立工程步骤，而不是事后补丁。',
+      '配图系统、素材 ZIP、正文 PDF、公众号预览与草稿箱：从正文完成一路延伸到交付和分发。'
+    ],
+    designPhilosophy: [
+      { title: '结构先于正文', description: '系统把方向选择和大纲审阅放在正文之前，先锁住论证路线，再释放写作算力。' },
+      { title: '可发布胜于一次出稿', description: '目标不是一键吐出一篇看似完整的文章，而是持续逼近“可发布、可信、克制”的成熟稿件。' },
+      { title: '最小必要修改', description: '无论是终审、去 AI 化还是句级终修，系统都强调在原结构基础上做最少但最关键的改动。' },
+      { title: '把生产闭环收回一个工作台', description: '研究、写作、精修、配图、导出、公众号分发属于同一条生产线，不应该被拆成多套彼此失联的工具。' }
+    ],
+    results: [
+      '把商业文章从一次性 Prompt 产物改造成可审计、可回看、可阶段验收的生产流程。',
+      '把研究、长文写作、审稿、去 AI 化、配图与公众号发布串成一个连续工作台。',
+      '支持多风格库运行时资产加载、可选 Deep Research 与前后端分离的模块化扩展。',
+      '沉淀出一套适合中文商业内容生产的长流程 AI 产品交互范式。'
+    ],
+    screenshots: [
+      { id: 'U01', url: '/projects/writingworkspace/U01-writingworkspace-01.png', focus: 'BYOK 准入页', action: '输入并保存 Gemini API Key。', evidence: '把模型密钥留在用户浏览器会话，先解决安全与成本边界。' },
+      { id: 'U02', url: '/projects/writingworkspace/U02-writingworkspace-02.png', focus: '写作任务配置首页', action: '填写主题、风格库、文体、受众、字数、chunk 长度与 TN/Deep Research 开关。', evidence: '写作不是空白聊天框，而是结构化任务配置。' },
+      { id: 'U03', url: '/projects/writingworkspace/U03-writingworkspace-03.png', focus: '研究阶段-综合轨道', action: '等待系统拉取背景事实与事件主线。', evidence: '主流程在写作前先建立通用资料库基线。' },
+      { id: 'U04', url: '/projects/writingworkspace/U04-writingworkspace-04.png', focus: '研究阶段-量化轨道', action: '等待系统补齐指标、比例和可量化证据。', evidence: '定量研究被单独拆轨，减少结论只凭感觉。' },
+      { id: 'U05', url: '/projects/writingworkspace/U05-writingworkspace-05.png', focus: '研究阶段-人文轨道', action: '等待系统补齐人物、组织与叙事背景。', evidence: '把人物与机构语境纳入资料整理，而不是只抓数字。' },
+      { id: 'U06', url: '/projects/writingworkspace/U06-writingworkspace-06.png', focus: '研究资料总览', action: '阅读整理后的研究文档并确认继续。', evidence: '多轨研究先沉淀为可审阅资料库，再进入方向阶段。' },
+      { id: 'U07', url: '/projects/writingworkspace/U07-writingworkspace-07.png', focus: '方向生成中', action: '等待系统基于资料库产出文章切口。', evidence: '讨论方向是独立步骤，不和正文生成混在一起。' },
+      { id: 'U08', url: '/projects/writingworkspace/U08-writingworkspace-08.png', focus: '五个讨论方向候选', action: '横向比较不同论证切口。', evidence: '系统强调先选判断框架，再写文章。' },
+      { id: 'U09', url: '/projects/writingworkspace/U09-writingworkspace-09.png', focus: '方向补充偏好', action: '输入额外要求并重新生成方向。', evidence: '用户可以约束切口而不必推倒前面全部研究。' },
+      { id: 'U10', url: '/projects/writingworkspace/U10-writingworkspace-10.png', focus: '文章大纲生成中', action: '等待系统把方向展开为可写的大纲。', evidence: '进入长文写作前先完成结构骨架。' },
+      { id: 'U11', url: '/projects/writingworkspace/U11-writingworkspace-11.png', focus: '文章大纲审阅', action: '在左侧预览大纲，并用右侧全局修改建议微调。', evidence: '大纲审批是明确门禁，不让正文在错误结构上开写。' },
+      { id: 'U12', url: '/projects/writingworkspace/U12-writingworkspace-12.png', focus: 'Writing Insights 提炼中', action: '等待系统抽取本次任务的写法方法。', evidence: '把风格与方法沉淀成短文档，供后续写作反复引用。' },
+      { id: 'U13', url: '/projects/writingworkspace/U13-writingworkspace-13.png', focus: 'Evidence Cards 整理中', action: '等待系统把证据拆成可调用卡片。', evidence: '写作引用被提前结构化，降低长文阶段的信息漂移。' },
+      { id: 'U14', url: '/projects/writingworkspace/U14-writingworkspace-14.png', focus: 'Chunk Plan 规划中', action: '等待系统把大纲切分成稳定的分段任务。', evidence: '长文通过分段计划控制节奏和衔接，不赌一次性出完。' },
+      { id: 'U15', url: '/projects/writingworkspace/U15-writingworkspace-15.png', focus: '首轮 Chunk 写作中', action: '等待系统完成当前分段正文。', evidence: '分段写作进度对用户可见，长任务不再是纯黑盒。' },
+      { id: 'U16', url: '/projects/writingworkspace/U16-writingworkspace-16.png', focus: '分段稿缝合中', action: '等待系统把多个 chunk 组装成完整文章。', evidence: '组装阶段专门解决衔接、重复与结构连贯问题。' },
+      { id: 'U17', url: '/projects/writingworkspace/U17-writingworkspace-17.png', focus: '终审第 1 轮', action: '等待系统执行杂志级审稿。', evidence: '正式发布前存在独立审校循环，而不是直接导出。' },
+      { id: 'U18', url: '/projects/writingworkspace/U18-writingworkspace-18.png', focus: '去 AI 化检查', action: '等待系统识别残余 AI 腔与模板化表达。', evidence: '发布质量门槛把“像成熟编辑写成的文章”作为目标。' },
+      { id: 'U19', url: '/projects/writingworkspace/U19-writingworkspace-19.png', focus: '句级终修', action: '等待系统做最后的微调收束。', evidence: '最终 polish 只做最小必要修改，避免再次破坏结构。' },
+      { id: 'U20', url: '/projects/writingworkspace/U20-writingworkspace-20.png', focus: '配图要求补全弹窗', action: '填写配图张数、风格要求与限制项。', evidence: '视觉系统的约束在生成前显式输入，而不是事后救火。' },
+      { id: 'U21', url: '/projects/writingworkspace/U21-writingworkspace-21.png', focus: '配图样式样本与规则', action: '上传视觉样本并补充排除规则后开始生成。', evidence: '系统允许用样图和文字同时约束配图风格。' },
+      { id: 'U22', url: '/projects/writingworkspace/U22-writingworkspace-22.png', focus: '配图规划阶段', action: '等待系统分析全文并规划插图位。', evidence: '配图先做全篇插槽设计，再进入逐张渲染。' },
+      { id: 'U23', url: '/projects/writingworkspace/U23-writingworkspace-23.png', focus: '配图渲染进度', action: '查看当前阶段、已出张数和一致性规则。', evidence: '图像生成过程被拆成可观察状态，便于中途判断与停止。' },
+      { id: 'U24', url: '/projects/writingworkspace/U24-writingworkspace-24.png', focus: '配图产物总览', action: '浏览已生成的图片并执行删除、重生成或版本切换。', evidence: '图像资产被当作可管理内容，而不是一次性黑盒结果。' },
+      { id: 'U25', url: '/projects/writingworkspace/U25-writingworkspace-25.png', focus: '正文内嵌配图终态', action: '在文章阅读视图中复核图片与正文的连接。', evidence: '视觉输出最终回归正文消费体验，而不是停留在独立图床。' },
+      { id: 'U26', url: '/projects/writingworkspace/U26-writingworkspace-26.png', focus: '公众号发布面板初始化', action: '配置版式主题、作者、摘要、引言强调和评论开关。', evidence: '发布动作被整合进写作工作台，不需要再跳到外部后台重复录入。' },
+      { id: 'U27', url: '/projects/writingworkspace/U27-writingworkspace-27.png', focus: '公众号预览生成中', action: '等待系统解析正文、套用版式并生成 HTML 预览。', evidence: '发布前预览同样是显式、可观测的流程节点。' },
+      { id: 'U28', url: '/projects/writingworkspace/U28-writingworkspace-28.png', focus: '公众号预览结果', action: '在真实排版中检查标题、作者区、正文和首图。', evidence: 'Markdown 到公众号版式的转换结果可以先验收再落草稿。' },
+      { id: 'U29', url: '/projects/writingworkspace/U29-writingworkspace-29.png', focus: '公众号草稿元数据', action: '查看 media id、任务 id 与远端草稿摘要。', evidence: '草稿同步状态被直接暴露，便于追踪与回查。' },
+      { id: 'U30', url: '/projects/writingworkspace/U30-writingworkspace-30.png', focus: '草稿箱落库', action: '在草稿列表中确认新文章已生成卡片。', evidence: '公众号草稿成为工作台内可复用的后续资产。' },
+      { id: 'U31', url: '/projects/writingworkspace/U31-writingworkspace-31.png', focus: '微信公众号官方后台草稿箱', action: '在微信公众平台确认文章已成功推送到官方草稿箱并可继续管理。', evidence: '工作台不只生成预览，还把成稿真实落到了公众号官方后台。' },
+      { id: 'U32', url: '/projects/writingworkspace/U32-writingworkspace-32.png', focus: '微信公众号官方后台正文页', action: '在微信公众平台打开正文页，继续执行官方侧的编辑或发布管理。', evidence: '推送成功后可以直接回到公众号官方平台管理草稿与正式发布。' }
     ]
   },
   intelliportfolio: {

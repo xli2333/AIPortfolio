@@ -27,28 +27,29 @@ export function AIWorkflowMatrix() {
     setMounted(true)
     const interval = setInterval(() => {
       setActiveStage((prev) => {
-        // Force cycle through exactly 7 stages (0 to 6)
-        const next = (prev + 1) % 7;
+        // Force cycle through exactly 8 stages (0 to 7)
+        const next = (prev + 1) % 8;
         return next;
       })
     }, 2800)
     return () => clearInterval(interval)
   }, [])
 
-  if (!mounted) return <div className="w-full h-full min-h-[360px] md:min-h-[500px] border border-border/30 bg-[#050505]" />
+  if (!mounted) return <div className="w-full h-full min-h-[400px] md:min-h-[560px] border border-border/30 bg-[#050505]" />
 
   const stages = [
     { label: "01. BIZDECK", metric: "PPT_WORKFLOW" },
     { label: "02. BIZCASE PRO", metric: "CONTENT_FACTORY" },
-    { label: "03. INTELLIPORTFOLIO", metric: "FINANCE_RAG" },
-    { label: "04. CLONE ME", metric: "AGENT_IM" },
-    { label: "05. JOB SCOUT", metric: "DATA_PIPELINE" },
-    { label: "06. TRANSSTRUCT WORKSPACE", metric: "PDF_ASSET_SYNC" },
-    { label: "07. THEORY VALIDATOR", metric: "SEMANTIC_ENGINE" },
+    { label: "03. WRITING WORKSPACE", metric: "AI_WRITING_SYSTEM" },
+    { label: "04. INTELLIPORTFOLIO", metric: "FINANCE_RAG" },
+    { label: "05. CLONE ME", metric: "AGENT_IM" },
+    { label: "06. JOB SCOUT", metric: "DATA_PIPELINE" },
+    { label: "07. TRANSSTRUCT WORKSPACE", metric: "PDF_ASSET_SYNC" },
+    { label: "08. THEORY VALIDATOR", metric: "SEMANTIC_ENGINE" },
   ]
 
   return (
-    <div className="relative w-full h-[360px] sm:h-[420px] md:h-[500px] border border-accent/20 bg-[#050505] overflow-hidden group flex origin-left">
+    <div className="relative w-full h-[400px] sm:h-[500px] md:h-[560px] border border-accent/20 bg-[#050505] overflow-hidden group flex origin-left">
       
       {/* 0. Complex Neural Network Background - Fixed Visibility */}
       <div className="absolute inset-0 z-0">
@@ -123,7 +124,7 @@ export function AIWorkflowMatrix() {
           className="absolute top-0 left-0 w-full h-[2px] bg-accent/40 shadow-[0_0_20px_2px_rgba(249,115,22,0.6)] pointer-events-none"
         />
 
-        <div className="relative z-20 flex flex-col gap-3 w-full max-w-[95%] h-full justify-center">
+        <div className="relative z-20 flex flex-col gap-3.5 w-full max-w-[95%] h-full justify-center">
           <div className="mb-1 flex justify-between items-end border-b border-accent/40 pb-2">
             <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent/90 font-bold shadow-accent">
               System.Orchestrator
@@ -176,7 +177,7 @@ export function AIWorkflowMatrix() {
         </div>
         
         {/* Terminal Log Output at Bottom - High Contrast */}
-        <div className="absolute bottom-4 right-4 left-4 md:bottom-8 md:right-8 md:left-8 font-mono text-[9px] md:text-[10px] text-accent p-3 md:p-4 border border-accent/30 bg-black/80 backdrop-blur-xl shadow-[0_0_15px_rgba(249,115,22,0.15)]">
+        <div className="absolute bottom-4 right-4 left-4 md:bottom-6 md:right-8 md:left-8 font-mono text-[9px] md:text-[10px] text-accent p-3 md:p-4 border border-accent/30 bg-black/80 backdrop-blur-xl shadow-[0_0_15px_rgba(249,115,22,0.15)]">
           <p className="opacity-60 mb-1">{`> Loading tensor processing module...`}</p>
           <p className="opacity-80 mb-1">{`> Establishing connection to RAG vector DB...`}</p>
           <motion.p

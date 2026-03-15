@@ -69,8 +69,8 @@ export function HeroSection() {
 
             <p className="mt-4 max-w-2xl font-sans text-sm md:text-base text-foreground/80 leading-relaxed font-light">
               {locale === "zh"
-                ? "本站收录 7 个独立完成的真实项目，覆盖需求拆解、全栈开发、异步架构与生产部署。"
-                : "This portfolio includes seven end-to-end projects across product design, full-stack development, and production deployment."}
+                ? "本站收录 8 个独立完成的真实项目，覆盖需求拆解、全栈开发、异步架构与生产部署。"
+                : "This portfolio includes eight end-to-end projects across product design, full-stack development, and production deployment."}
             </p>
 
             <div className="mt-10 flex items-center gap-8">
@@ -84,8 +84,8 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="xl:col-span-6 relative w-full h-[360px] sm:h-[460px] md:h-[600px] flex items-center justify-start xl:-ml-4">
-            <div className="w-full max-w-[800px]">
+          <div className="xl:col-span-6 relative w-full h-[400px] sm:h-[520px] md:h-[660px] flex items-center justify-start xl:-ml-2">
+            <div className="w-full max-w-[860px]">
               <AIWorkflowMatrix />
             </div>
           </div>
