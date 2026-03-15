@@ -84,7 +84,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="xl:col-span-6 relative w-full h-[400px] sm:h-[520px] md:h-[660px] flex items-center justify-start xl:-ml-2">
+          <div className="xl:col-span-6 relative w-full h-[400px] sm:h-[520px] md:h-[660px] flex items-start justify-start xl:-ml-2">
             <div className="w-full max-w-[860px]">
               <AIWorkflowMatrix />
             </div>

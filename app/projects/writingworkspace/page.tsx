@@ -5,6 +5,7 @@ import { useLocalizedProject } from "@/hooks/use-localized-project"
 import { useProjectPageCopy } from "@/hooks/use-project-page-copy"
 import { AnimatedNoise } from "@/components/animated-noise"
 import { SplitFlapText, SplitFlapAudioProvider } from "@/components/split-flap-text"
+import { ProjectLiveLink } from "@/components/project-live-link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
@@ -76,6 +77,7 @@ export default function WritingWorkspacePage() {
               </span>
             ) : null}
           </div>
+          <ProjectLiveLink href="https://ai-writer-online.vercel.app/" label={t.tryLink} />
         </div>
       </section>
 
