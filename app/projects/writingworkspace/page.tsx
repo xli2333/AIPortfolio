@@ -18,6 +18,8 @@ gsap.registerPlugin(ScrollTrigger)
 export default function WritingWorkspacePage() {
   const project = useLocalizedProject("writingworkspace")
   const t = useProjectPageCopy()
+  const heroCtaBaseClassName =
+    "group inline-flex min-h-[60px] w-full max-w-full items-center justify-between gap-4 px-5 py-3 text-left text-foreground transition-all duration-300 sm:w-auto sm:min-w-[320px]"
   
   const heroRef = useRef<HTMLElement>(null)
   
@@ -78,32 +80,42 @@ export default function WritingWorkspacePage() {
             ) : null}
           </div>
           <div className="mt-8 flex flex-wrap items-center gap-3 [&>div]:mt-0">
-            <ProjectLiveLink href="https://ai-writer-online.vercel.app/" label={t.tryLink} />
+            <ProjectLiveLink
+              href="https://ai-writer-online.vercel.app/"
+              label={t.tryLink}
+              badgeLabel={t.tryLinkBadge}
+              className={`${heroCtaBaseClassName} border-accent/40 bg-accent/5 hover:border-accent hover:bg-accent/10`}
+            />
             <Dialog>
               <DialogTrigger asChild>
                 <button
                   type="button"
-                  className="group inline-flex items-center gap-3 border border-border bg-background/75 px-5 py-3 text-left text-foreground transition-all duration-300 hover:border-accent hover:bg-accent/5"
+                  className={`${heroCtaBaseClassName} border border-border bg-background/75 hover:border-accent hover:bg-accent/5`}
                 >
-                  <span className="text-sm leading-relaxed md:text-[15px]">
-                    已对接公众号：小李的信息工坊
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-mono text-[10px] uppercase tracking-widest text-foreground/55">
+                      {t.writingWorkspaceCta.accountLabel}
+                    </span>
+                    <span className="mt-1 block text-sm leading-snug md:text-[15px]">
+                      {t.writingWorkspaceCta.accountName}
+                    </span>
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-accent transition-transform duration-300 group-hover:translate-y-[-1px]">
-                    QR
+                  <span className="shrink-0 font-mono text-[10px] uppercase tracking-widest text-accent transition-transform duration-300 group-hover:translate-y-[-1px]">
+                    {t.writingWorkspaceCta.qrLabel}
                   </span>
                 </button>
               </DialogTrigger>
               <DialogContent className="max-w-[92vw] border-border bg-background/95 p-6 backdrop-blur-xl sm:max-w-md">
                 <DialogTitle className="pr-8 font-serif text-2xl text-foreground">
-                  已对接公众号：小李的信息工坊
+                  {t.writingWorkspaceCta.dialogTitle}
                 </DialogTitle>
                 <DialogDescription className="text-sm leading-relaxed text-foreground/70">
-                  扫码查看公众号二维码。
+                  {t.writingWorkspaceCta.dialogDescription}
                 </DialogDescription>
                 <div className="overflow-hidden border border-border bg-white p-3">
                   <Image
                     src="/projects/writingworkspace/wechat-official-account-xiaoli-info-workshop.jpg"
-                    alt="小李的信息工坊公众号二维码"
+                    alt={t.writingWorkspaceCta.qrAlt}
                     width={430}
                     height={430}
                     className="h-auto w-full object-contain"
