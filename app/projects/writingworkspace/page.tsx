@@ -7,7 +7,7 @@ import { AnimatedNoise } from "@/components/animated-noise"
 import { SplitFlapText, SplitFlapAudioProvider } from "@/components/split-flap-text"
 import { ProjectLiveLink } from "@/components/project-live-link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -77,7 +77,41 @@ export default function WritingWorkspacePage() {
               </span>
             ) : null}
           </div>
-          <ProjectLiveLink href="https://ai-writer-online.vercel.app/" label={t.tryLink} />
+          <div className="mt-8 flex flex-wrap items-center gap-3 [&>div]:mt-0">
+            <ProjectLiveLink href="https://ai-writer-online.vercel.app/" label={t.tryLink} />
+            <Dialog>
+              <DialogTrigger asChild>
+                <button
+                  type="button"
+                  className="group inline-flex items-center gap-3 border border-border bg-background/75 px-5 py-3 text-left text-foreground transition-all duration-300 hover:border-accent hover:bg-accent/5"
+                >
+                  <span className="text-sm leading-relaxed md:text-[15px]">
+                    已对接公众号：小李的信息工坊
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-accent transition-transform duration-300 group-hover:translate-y-[-1px]">
+                    QR
+                  </span>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-[92vw] border-border bg-background/95 p-6 backdrop-blur-xl sm:max-w-md">
+                <DialogTitle className="pr-8 font-serif text-2xl text-foreground">
+                  已对接公众号：小李的信息工坊
+                </DialogTitle>
+                <DialogDescription className="text-sm leading-relaxed text-foreground/70">
+                  扫码查看公众号二维码。
+                </DialogDescription>
+                <div className="overflow-hidden border border-border bg-white p-3">
+                  <Image
+                    src="/projects/writingworkspace/wechat-official-account-xiaoli-info-workshop.jpg"
+                    alt="小李的信息工坊公众号二维码"
+                    width={430}
+                    height={430}
+                    className="h-auto w-full object-contain"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </section>
 
