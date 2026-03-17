@@ -18,8 +18,6 @@ gsap.registerPlugin(ScrollTrigger)
 export default function WritingWorkspacePage() {
   const project = useLocalizedProject("writingworkspace")
   const t = useProjectPageCopy()
-  const heroCtaBaseClassName =
-    "group inline-flex min-h-[60px] w-full max-w-full items-center justify-between gap-4 px-5 py-3 text-left text-foreground transition-all duration-300 sm:w-auto sm:min-w-[320px]"
   
   const heroRef = useRef<HTMLElement>(null)
   
@@ -83,20 +81,19 @@ export default function WritingWorkspacePage() {
             <ProjectLiveLink
               href="https://ai-writer-online.vercel.app/"
               label={t.tryLink}
-              badgeLabel={t.tryLinkBadge}
-              className={`${heroCtaBaseClassName} border-accent/40 bg-accent/5 hover:border-accent hover:bg-accent/10`}
+              wrapperClassName="mt-0"
             />
             <Dialog>
               <DialogTrigger asChild>
                 <button
                   type="button"
-                  className={`${heroCtaBaseClassName} border border-border bg-background/75 hover:border-accent hover:bg-accent/5`}
+                  className="group inline-flex h-[60px] w-full max-w-full items-center justify-between gap-4 border border-border bg-background/75 px-5 py-3 text-left text-foreground transition-all duration-300 hover:border-accent hover:bg-accent/5 sm:w-auto sm:min-w-[320px]"
                 >
                   <span className="min-w-0 flex-1">
                     <span className="block font-mono text-[10px] uppercase tracking-widest text-foreground/55">
                       {t.writingWorkspaceCta.accountLabel}
                     </span>
-                    <span className="mt-1 block text-sm leading-snug md:text-[15px]">
+                    <span className="mt-0.5 block text-sm leading-tight md:text-[15px]">
                       {t.writingWorkspaceCta.accountName}
                     </span>
                   </span>
